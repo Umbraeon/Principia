@@ -1,0 +1,84 @@
+
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  
+  .fluxograma {
+    background-color: #b1c1ca;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  
+  .diagrama-classes {
+    background-color: #9fa0cc;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .mermaid {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 90%; 
+  }
+  
+  .mermaid rect {
+    fill: #4f46e5;
+    stroke: #312e81;
+    stroke-width: 2;
+    rx: 8px;
+    ry: 8px;
+  }
+  
+  .mermaid text {
+    fill: #ffffff;
+    font-weight: bold;
+  }
+  
+  .mermaid polygon {
+    fill: #f97316;
+    stroke: #c2410c;
+    stroke-width: 2;
+  }
+  
+  .mermaid line, .mermaid path {
+    stroke: #1e3a8a;
+    stroke-width: 2px;
+    marker-end: url(#arrowhead);
+  }
+  
+  .mermaid .arrowheadPath {
+    fill: #1e3a8a;
+  }
+  
+  .mermaid .classDiagram rect {
+    fill: #2563eb;
+    stroke: #1d4ed8;
+  }
+  .mermaid .classDiagram .classTitle {
+    fill: #ffffff;
+    font-weight: bold;
+  }
+  .mermaid .classDiagram .classText {
+    fill: #e0e7ff;
+  }
+  
+  h2 {
+    color: #1e3a8a;
+    font-family: Arial, sans-serif;
+    margin-bottom: 15px;
+  }
+  

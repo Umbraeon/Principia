@@ -1,0 +1,26 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+
+# Diretório de build
+dist
+build
+
+# Dependências
+node_modules
+jspm_packages
+
+# Arquivos temporários
+*.tmp
+*~
+
+# Arquivos de configuração do IDE
+.idea
+.vscode
+*.iml
+
+# Arquivos específicos do sistema operacional
+.DS_Store
+Thumbs.db

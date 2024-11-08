@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagramas da Solução</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <div class="container">
+    <!-- Fluxograma -->
+    <div class="fluxograma">
+      <h2>Fluxograma da Solução</h2>
+      <div class="mermaid">
+        graph TD
+        A[Início] --> B{Boleto em atraso?};
+        B -- Sim --> C[Inativar boleto em atraso];
+        C --> D[Gerar novo boleto];
+        D --> E[Fim];
+        B -- Não --> D;
+      </div>
+    </div>
+
+    <!-- Diagrama de Classes -->
+    <div class="diagrama-classes">
+      <h2>Diagrama de Classes</h2>
+      <div class="mermaid">
+        classDiagram
+        class Boleto {
+            -id: string
+            -cpf: string
+            -valor: number
+            -data_vencimento: Date
+            -status: string
+            -boleto_anterior: string
+            +gerarBoleto()
+            +atualizarStatusBoleto()
+            +cancelarBoleto()
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>
