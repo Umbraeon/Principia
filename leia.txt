@@ -1,0 +1,124 @@
+Configuração da Tabela:
+
+Segue o SQL da tabela boletos:
+
+SQL
+CREATE TABLE boletos (
+    id VARCHAR(255) PRIMARY KEY,
+    cpf VARCHAR(255),
+    endereco VARCHAR(255),
+    valor DECIMAL(10, 2),
+    data_vencimento DATE,
+    status VARCHAR(255),
+    boleto_anterior VARCHAR(255),
+    data_pagamento DATE
+);
+
+
+Testes no Postman:
+
+Cenário 1: Novo boleto, cliente novo:
+
+Método: POST
+URL: http://localhost:3000/gerar-boleto
+Body (JSON):
+JSON
+{
+"cpf": "98765432100",
+"endereco": "Rua Exemplo, 123",
+"valor": 100.00,
+"dataVencimento": "10/12/2024"
+}
+
+Resposta: "Boleto criado! ID: &lt;ID_DO_BOLETO>"
+
+Cenário 2: Cliente com boleto atrasado:
+
+Cole esse SQL no banco pra inserir um boleto atrasado:
+SQL
+INSERT INTO boletos (id, cpf, endereco, valor, data_vencimento, status)
+VALUES ('<ID_BOLETO_ANTERIOR>', '98765432100', 'Rua Exemplo, 123', 100.00, '2023-11-01', 'Ativo');
+
+
+
+Método: POST
+URL: http://localhost:3000/gerar-boleto
+Body (JSON):
+JSON
+{
+"cpf": "98765432100",
+"endereco": "Rua Exemplo, 123",
+"valor": 150.00,
+"dataVencimento": "20/12/2024"
+}
+
+
+Resposta: "Boleto criado! ID: &lt;ID_DO_BOLETO>"
+
+Cenário 3: Boleto atrasado já pago:
+
+Insere um boleto atrasado e pago no banco:
+SQL
+INSERT INTO boletos (id, cpf, endereco, valor, data_vencimento, status, data_pagamento)
+VALUES ('<ID_BOLETO_ANTERIOR>', '98765432100', 'Rua Exemplo, 123', 100.00, '2023-11-01', 'Ativo', '2023-11-05');
+
+
+Método: POST
+URL: http://localhost:3000/gerar-boleto
+Body (JSON):
+JSON
+{
+"cpf": "98765432100",
+"endereco": "Rua Exemplo, 123",
+"valor": 150.00,
+"dataVencimento": "20/12/2024"
+}
+Use o código com cuidado.
+
+Resposta: "Boleto em atraso já quitado."
+
+Cenário 4: Atualiza status do boleto:
+
+Método: POST
+URL: http://localhost:3000/atualizar-status-boleto
+Body (JSON):
+JSON
+{
+"boletoId": "<ID_DO_BOLETO>"
+}
+
+
+Resposta: "Status do boleto &lt;ID_DO_BOLETO> atualizado!"
+
+Cenário 5: Cancela boleto ativo:
+
+Método: POST
+URL: http://localhost:3000/cancelar-boleto
+Body (JSON):
+JSON
+{
+"boletoId": "<ID_DO_BOLETO>"
+}
+
+
+Resposta: "Boleto &lt;ID_DO_BOLETO> cancelado!"
+
+Cenário 6: Cancela boleto pago:
+
+Insere um boleto pago no banco:
+SQL
+INSERT INTO boletos (id, cpf, endereco, valor, data_vencimento, status, data_pagamento)
+VALUES ('<ID_DO_BOLETO>', '98765432100', 'Rua Teste, 456', 200.00, '2024-01-15', 'Ativo', '2023-11-08');
+Use o código com cuidado.
+
+Manda a requisição:
+Método: POST
+URL: http://localhost:3000/cancelar-boleto
+Body (JSON):
+JSON
+{
+"boletoId": "<ID_DO_BOLETO>"
+}
+
+
+Resposta: "Boleto &lt;ID_DO_BOLETO> já pago, não pode ser cancelado."
