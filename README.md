@@ -75,6 +75,21 @@ A priorização dos requisitos foi baseada na seguinte ordem de importância:
 
 ## Diagramas
 
+**Diagrama da Solução**
+
+classDiagram
+    class Boleto {
+        -id: string
+        -cpf: string
+        -valor: number
+        -data_vencimento: Date
+        -status: string
+        -boleto_anterior: string
+        +gerarBoleto()
+        +atualizarStatusBoleto()
+        +cancelarBoleto()
+    }
+
 **Fluxograma da solução:**
 
 ```mermaid
@@ -84,3 +99,5 @@ graph TD
     C --> D[Gerar novo boleto];
     D --> E[Fim];
     B -- Não --> D;
+
+
